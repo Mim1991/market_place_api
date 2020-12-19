@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+  include ActiveModel::Validations
+  validates_with EnoughProductsValidator
   before_validation :set_total!
   belongs_to :user
   validates :total, numericality: { greater_than_or_equal_to: 0}
